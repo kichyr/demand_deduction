@@ -4,12 +4,12 @@ using namespace std;
 #include "Header.h"
 #include <cstdlib>
 
-Graph::Graph(int NumberOfNodes)
+void Graph::initGraph(int NumberOfNodes)
 {
     this->NumberOfNodes = NumberOfNodes;
     adj = std::vector<vector<int>>(NumberOfNodes, std::vector<int>(NumberOfNodes, 0));
     sizeA = NumberOfNodes * NumberOfNodes;
-    A = std::vector<vector<int>>(sizeA, std::vector<int>(sizeA, 0));
+    A = std::vector<vector<float>>(sizeA, std::vector<float>(sizeA, 0.0));
 }
 
 void Graph::addEdge(int node1, int node2)
@@ -45,17 +45,36 @@ void Graph::printAdjMatrix() {
     }
 }
  
-Graph GraphGenerator(int nodes)
+Graph GraphGeneratorFromFile(int* nodes) {
+    FILE * fp;
+	fp = fopen ("Graph.txt","r");
+    fscanf(fp, "%d", nodes);
+    Graph g;
+    g.initGraph(*nodes);
+
+    int v1, v2;
+    for(int i = 0; EOF != fscanf(fp, "%d", &v1); i++) {
+            fscanf(fp, "%d", &v2);
+            g.addEdge(v1, v2);
+    }
+    return g;
+}
+
+Graph GraphGenerator(int* nodes, bool fromFile)
 {
-	FILE * fp;
+    if(fromFile) {
+        return GraphGeneratorFromFile(nodes);
+    }
+	FILE * fp;  
 	fp = fopen ("Graph.txt","w");
-    Graph g(nodes);
+    Graph g;
+    g.initGraph(*nodes);
     int i,numofedges,v1,v2;//v1 is node1 , v2 is node2
     srand (time(NULL));
-    numofedges = rand() % (nodes / 3) + 1;//range 1 to n^2
-    //fprintf(fp, "%d\t%d\n",nodes,numofedges+nodes );
+    numofedges = rand() % (*nodes / 3) + 1;//range 1 to n^2
+    fprintf(fp, "%d\n", *nodes);
     //satisfy the connectivity, the min edges is nodes -1
-    for(i = 0; i < nodes-1; i++)
+    for(i = 0; i < *nodes-1; i++)
     {
         g.addEdge(i,i+1);
         fprintf(fp, "%d\t%d\n",i,i+1);
@@ -63,8 +82,8 @@ Graph GraphGenerator(int nodes)
    
     for(i = 0; i <= numofedges; i++)
     {
-        v1 = rand() % nodes;
-        v2 = rand() % nodes;
+        v1 = rand() % *nodes;
+        v2 = rand() % *nodes;
         if(v1 == v2)
         {
             numofedges++;

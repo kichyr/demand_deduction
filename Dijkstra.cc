@@ -107,8 +107,8 @@ void Graph::dijkstra(int src)
     for(int current_dest = 0; current_dest < NumberOfNodes; current_dest++) {
         temp = current_dest;
         while(temp != src) {
-            A[parent[temp] * NumberOfNodes + temp][src * NumberOfNodes + current_dest] = 1;
-            A[temp * NumberOfNodes + parent[temp]][current_dest * NumberOfNodes + src] = 1;
+            A[parent[temp] * NumberOfNodes + temp][src * NumberOfNodes + current_dest] = 1.0;
+            A[temp * NumberOfNodes + parent[temp]][current_dest * NumberOfNodes + src] = 1.0;
             temp = parent[temp];
         }
     }

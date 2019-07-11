@@ -13,4 +13,4 @@ main.o: main.cpp
 	g++ -c main.cpp -o main.o
 
 clean:
-	rm *.o a.out kek.txt Graph.txt
+	rm *.o a.out kek.txt

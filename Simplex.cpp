@@ -32,7 +32,7 @@ How to give inputs to the program =>>>
 
 class Simplex{
 
-    private:
+    public:
         int rows, cols;
         //stores coefficients of all the variables
         std::vector <std::vector<float> > A;
@@ -330,7 +330,7 @@ class Simplex{
 
 };
 
-int main()
+/* int main()
 {
 
     int colSizeA=6;  //should initialise columns size in A
@@ -381,4 +381,4 @@ int main()
 
 
     return 0;
-}
+} */
