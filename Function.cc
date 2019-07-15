@@ -9,7 +9,7 @@ void Graph::initGraph(int NumberOfNodes)
     this->NumberOfNodes = NumberOfNodes;
     adj = std::vector<vector<int>>(NumberOfNodes, std::vector<int>(NumberOfNodes, 0));
     sizeA = NumberOfNodes * NumberOfNodes;
-    A = std::vector<vector<float>>(sizeA, std::vector<float>(sizeA, 0.0));
+    A = std::vector<vector<double>>(sizeA, std::vector<double>(sizeA, 0.0));
 }
 
 void Graph::addEdge(int node1, int node2)
@@ -20,9 +20,8 @@ void Graph::addEdge(int node1, int node2)
 
 void Graph::createMatrixA() {
     printf("----------------Pathes--------------\n");
-    for(int i = 0; i < NumberOfNodes; i++) {
+    for(int i = 0; i < NumberOfNodes; i++)
         dijkstra(i);
-    }
 }
 
 void Graph::printA() {

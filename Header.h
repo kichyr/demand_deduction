@@ -12,7 +12,7 @@ public:
     int NumberOfNodes;    // No. of nodes
     vector<vector <int>> adj;    // adj matrix
     int sizeA;
-    vector<vector <float>> A;
+    vector<vector <double>> A;
 
     void initGraph(int NumberOfNodes);   // Constructor
 
@@ -36,7 +36,7 @@ public:
     int NumberOfNodes;    // No. of nodes
     int sizeA;
     vector<int> X;
-    vector<float> Y;
+    vector<double> Y;
     int rangeOfFlow;
     Graph G;
 
@@ -47,13 +47,16 @@ public:
         this->rangeOfFlow = rangeOfFlow;
         this->NumberOfNodes = NumberOfNodes;
         sizeA = NumberOfNodes * NumberOfNodes;
-
         
         X = vector<int>(sizeA, 0);
-        Y = vector<float>(sizeA, 0);
+        Y = vector<double>(sizeA, 0);
 
         genRandomFlow();
         genY();
+        //fixing matrix A
+        for(int i = 0; i < NumberOfNodes;i++)
+            for(int j = 0; j < sizeA; j++)
+                G.A[j][i*NumberOfNodes+i] = 9;
         
         std::cout << "\n---------generated vector X----------:" << std::endl;
         for(int i = 0; i < sizeA; i++)

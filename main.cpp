@@ -1,6 +1,6 @@
 #include"Header.h"
 #include<iostream>
-#include"Simplex.cpp"
+#include"simplex_kichyr.cpp"
 
 using namespace std;
 
@@ -22,9 +22,8 @@ int main() {
     SimulatorTask simulator;
     simulator.generateInstanceOfTask(4, 10, true);
     //g.printA();
-    vector<float> coeff = vector<float>(simulator.sizeA, 100);
+    vector<double> coeff = vector<double>(simulator.sizeA, 1);
     simulator.G.printA();
-    vector<vector<float>> A = simulator.G.A;
-    Simplex simplex(A, coeff, coeff);
-    simplex.CalculateSimplex();
+    Simplex simplex;
+    cout << simplex.do_Simplex( simulator.G.A, simulator.Y, coeff, 0);
 }
