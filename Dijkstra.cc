@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include "Header.h"
-
+#include <math.h>
 // A utility function to find the vertex with minimum distance
 // value, from the set of vertices not yet included in shortest
 // path tree
@@ -106,6 +106,7 @@ void Graph::dijkstra(int src)
     int temp;
     for(int current_dest = 0; current_dest < NumberOfNodes; current_dest++) {
         temp = current_dest;
+        coeff[src * NumberOfNodes + current_dest] = pow(dist[current_dest], 2);
         while(temp != src) {
             A[parent[temp] * NumberOfNodes + temp][src * NumberOfNodes + current_dest] = 1.0;
             A[temp * NumberOfNodes + parent[temp]][current_dest * NumberOfNodes + src] = 1.0;

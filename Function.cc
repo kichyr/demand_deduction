@@ -10,6 +10,7 @@ void Graph::initGraph(int NumberOfNodes)
     adj = std::vector<vector<int>>(NumberOfNodes, std::vector<int>(NumberOfNodes, 0));
     sizeA = NumberOfNodes * NumberOfNodes;
     A = std::vector<vector<double>>(sizeA, std::vector<double>(sizeA, 0.0));
+    coeff = vector<double>(NumberOfNodes * NumberOfNodes, 0);
 }
 
 void Graph::addEdge(int node1, int node2)
@@ -26,8 +27,8 @@ void Graph::createMatrixA() {
 
 void Graph::printA() {
     std::cout << "-------------A matrix:-------------\n"; 
-    for(int i = 0; i < sizeA; i++) {
-        for(int j = 0; j < sizeA; j++) {
+    for(int i = 0; i < A.size(); i++) {
+        for(int j = 0; j < A[0].size(); j++) {
             cout << A[i][j];
         }
         std::cout << std::endl;

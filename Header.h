@@ -13,7 +13,7 @@ public:
     vector<vector <int>> adj;    // adj matrix
     int sizeA;
     vector<vector <double>> A;
-
+    vector<double> coeff;
     void initGraph(int NumberOfNodes);   // Constructor
 
     void addEdge(int node1, int node2);   // function to add an edge to graph
@@ -74,7 +74,7 @@ public:
         for(int i = 0; i < sizeA; i++) {
             X[i] = rand() % rangeOfFlow;
             if(i == k * NumberOfNodes + k) {
-                //X[i] = 0;
+                X[i] = 0;
                 k++;
             }
         }

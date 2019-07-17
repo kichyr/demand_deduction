@@ -1,4 +1,3 @@
-
 #include<vector>
 #include<algorithm>
 
@@ -31,7 +30,7 @@ private:
         this->A = std::vector<std::vector <double> >(nCol + nRows, std::vector<double>(nCol + nRows, 0));
         for(int i = 0; i < nRows; i++)
             for(int j = 0; j < nCol; j++)
-                this->A[i+nRows][j] = A[i][j];
+                this->A[i+nCol][j] = A[i][j];
     }
 
     //utils
